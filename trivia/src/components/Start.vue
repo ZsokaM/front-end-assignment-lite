@@ -1,5 +1,5 @@
 <template>
-  <div style="border: 1px solid white;">
+  <div style="border: 1px solid white; padding: 1rem;">
     <Instructions></Instructions>
     <select @change="setCurrentDiff">
       <option v-for="(diff, idx) in difficulties" :key="idx">{{ diff }}</option>

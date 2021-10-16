@@ -1,22 +1,22 @@
 <template>
-  <main class="home">
+  <main class="quiz">
     <section class="container">
       <h1>Homerun Trivia</h1>
-      <start></start>
+      <question></question>
     </section>
   </main>
 </template>
 
 <script>
-import Start from '../components/Start.vue'
+import Question from '../components/Question.vue'
 
 export default {
-  name: 'home',
+  name: 'quiz',
   data() {
     return {}
   },
   components: {
-    Start,
+    Question,
   },
   methods: {},
   created() {},

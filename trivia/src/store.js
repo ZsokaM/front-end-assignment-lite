@@ -14,7 +14,7 @@ export default new Vuex.Store({
       history: [],
       total: 0,
     },
-    currentView: 'start',
+    currentView: 'home',
   },
 
   mutations: {
@@ -32,6 +32,7 @@ export default new Vuex.Store({
       state.isOver = false
       state.questions = []
       state.round = 0
+      state.currentView = 'home'
     },
 
     setScore: (state, payload) => {
@@ -55,7 +56,8 @@ export default new Vuex.Store({
 
     startQuiz: (state, payload) => {
       state.questions = payload
-      state.currentView = 'quiz-view'
+      console.log(state.questions)
+      //state.currentView = 'quiz'
     },
   },
 
@@ -71,7 +73,7 @@ export default new Vuex.Store({
           return res.json()
         })
         .then((data) => {
-          this.questions = data.results
+          context.commit('startQuiz', data.results)
         })
     },
   },
