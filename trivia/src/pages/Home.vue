@@ -1,7 +1,7 @@
 <template>
-  <main class="home">
-    <section class="container">
-      <h1>Homerun Trivia</h1>
+  <main :class="$style.home">
+    <section :class="$style.container">
+      <h1 :class="$style['trivia-title']">Homerun Trivia</h1>
       <component :is="currentView"></component>
     </section>
   </main>
@@ -30,13 +30,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style module>
 .home {
   height: 100%;
   margin: 2rem auto;
+  padding: 2rem;
 }
 .container {
-  background-color: #ccc;
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -46,8 +46,9 @@ export default {
   justify-content: center;
   color: white;
   padding: 2rem;
+  background-color: white;
 }
-h1 {
+.trivia-title {
   font-size: 4rem;
   font-weight: bold;
   color: darkslateblue;

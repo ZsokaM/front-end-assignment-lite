@@ -41,6 +41,7 @@ export default new Vuex.Store({
     setIsAnswered: (state, payload) => {
       state.isAnswered = payload
     },
+
     setScore: (state, payload) => {
       if (payload) {
         state.score.history.push({
@@ -85,7 +86,7 @@ export default new Vuex.Store({
       state.currentView = 'quiz'
     },
 
-    styleButtons: (state) => {
+    colorAnswers: (state) => {
       state.questions[state.round].options.forEach((opt) => {
         if (opt.type) {
           opt.classes = { correct: true }
