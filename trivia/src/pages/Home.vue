@@ -28,8 +28,9 @@ export default {
 <style module>
 .home {
   height: 100%;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 2rem;
+  text-align: center;
 }
 .container {
   height: 100%;

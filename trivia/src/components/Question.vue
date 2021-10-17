@@ -8,7 +8,6 @@
         v-for="(opt, idx) in options"
         :key="idx"
         @click="handleAnswer(opt)"
-        :disabled="isAnswered"
         :class="[
           $style['question__options'],
           opt.classes.correct && $style.correct,
@@ -18,7 +17,7 @@
         {{ decodeHtmlEntity(opt.text) }}
       </li>
     </ul>
-    <button v-if="isAnswered" @click="nextQuestion">Next</button>
+    <button v-show="isAnswered" @click="nextQuestion">Next</button>
   </article>
 </template>
 
@@ -63,6 +62,7 @@ export default {
         .replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"')
         .replace(/&apos;/g, "'")
+        .replace(/&[#039]*;/g, "'")
     },
   },
 }
@@ -98,6 +98,7 @@ export default {
     line-height: 60px;
     font-size: 1.5rem;
     width: 100%;
+    cursor: pointer;
 
     &:hover {
       background-color: pink;

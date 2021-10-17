@@ -2,11 +2,11 @@
   <div>
     <score />
     <question-meter />
-    <div v-if="!isOver">
-      <question />
-    </div>
     <div v-if="isOver">
       <button @click="newGame">New game</button>
+    </div>
+    <div v-else>
+      <question />
     </div>
   </div>
 </template>
