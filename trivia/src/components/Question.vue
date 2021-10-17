@@ -41,10 +41,8 @@ export default {
       this.$store.commit('setIsAnswered', true)
       this.$store.commit('colorAnswers')
       if (choice.type) {
-        console.log('correct')
         this.$store.commit('setScore', true)
       } else {
-        console.log('false')
         this.$store.commit('setScore', false)
       }
       this.$store.commit('isOver')

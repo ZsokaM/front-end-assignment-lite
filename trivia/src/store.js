@@ -82,6 +82,8 @@ export default new Vuex.Store({
             correct: false,
           },
         })
+
+        q.options.sort(() => Math.random() - 0.5)
       })
       state.currentView = 'quiz'
     },
