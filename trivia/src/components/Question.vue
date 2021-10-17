@@ -1,6 +1,8 @@
 <template>
   <article :class="$style.question">
-    <p :class="$style['question__text']">{{ questions[round].question }}</p>
+    <p :class="$style['question__text']">
+      {{ decodeHtmlEntity(questions[round].question) }}
+    </p>
     <ul :class="$style['question__list']">
       <li
         v-for="(opt, idx) in options"
@@ -13,7 +15,7 @@
           opt.classes.incorrect && $style.incorrect,
         ]"
       >
-        {{ opt.text }}
+        {{ decodeHtmlEntity(opt.text) }}
       </li>
     </ul>
     <button v-if="isAnswered" @click="nextQuestion">Next</button>
@@ -53,6 +55,14 @@ export default {
       if (this.round < 9) {
         this.$store.commit('nextQuestion')
       }
+    },
+    decodeHtmlEntity(text) {
+      return String(text)
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
     },
   },
 }
