@@ -14,7 +14,7 @@ export default new Vuex.Store({
       history: [],
       total: 0,
     },
-    currentView: 'home',
+    currentView: 'start',
   },
 
   mutations: {
@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
 
     setScore: (state, payload) => {
-      if (payload.true) {
+      if (payload) {
         state.score.history.push({
           correct: true,
           wrong: false,
@@ -48,6 +48,7 @@ export default new Vuex.Store({
           wrong: true,
         })
       }
+      console.log(state.score)
     },
 
     setCurrentDiff: (state, payload) => {
@@ -56,8 +57,22 @@ export default new Vuex.Store({
 
     startQuiz: (state, payload) => {
       state.questions = payload
+      state.questions.forEach((q) => {
+        q.options = q.incorrect_answers.reduce((accum, curr) => {
+          accum.push({
+            text: curr,
+            type: false,
+          })
+          return accum
+        }, [])
+
+        q.options.push({
+          text: q.correct_answer,
+          type: true,
+        })
+      })
       console.log(state.questions)
-      //state.currentView = 'quiz'
+      state.currentView = 'quiz'
     },
   },
 
@@ -75,6 +90,12 @@ export default new Vuex.Store({
         .then((data) => {
           context.commit('startQuiz', data.results)
         })
+    },
+  },
+
+  getters: {
+    round: (state) => {
+      return state.round
     },
   },
 })

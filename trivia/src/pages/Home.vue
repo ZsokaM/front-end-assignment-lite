@@ -2,13 +2,14 @@
   <main class="home">
     <section class="container">
       <h1>Homerun Trivia</h1>
-      <start></start>
+      <component :is="currentView"></component>
     </section>
   </main>
 </template>
 
 <script>
 import Start from '../components/Start.vue'
+import Quiz from '../components/Quiz.vue'
 
 export default {
   name: 'home',
@@ -17,6 +18,12 @@ export default {
   },
   components: {
     Start,
+    Quiz,
+  },
+  computed: {
+    currentView() {
+      return this.$store.state.currentView
+    },
   },
   methods: {},
   created() {},
