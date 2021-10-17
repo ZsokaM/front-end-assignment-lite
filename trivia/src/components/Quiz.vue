@@ -1,8 +1,13 @@
 <template>
   <div>
-    <question-meter></question-meter>
     <score></score>
-    <question></question>
+    <question-meter></question-meter>
+    <div v-if="!isOver">
+      <question></question>
+    </div>
+    <div v-if="isOver">
+      <button @click="newGame">New game</button>
+    </div>
   </div>
 </template>
 
@@ -20,8 +25,16 @@ export default {
     Score,
     QuestionMeter,
   },
-  methods: {},
-  created() {},
+  computed: {
+    isOver() {
+      return this.$store.state.isOver
+    },
+  },
+  methods: {
+    newGame() {
+      this.$store.commit('newGame')
+    },
+  },
 }
 </script>
 

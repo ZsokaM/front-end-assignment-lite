@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>You are at question {{ round }} out of 10</p>
+  <div v-if="!isOver">
+    <p>You are at question {{ round + 1 }} out of 10</p>
   </div>
 </template>
 
@@ -9,6 +9,9 @@ export default {
   computed: {
     round() {
       return this.$store.state.round
+    },
+    isOver() {
+      return this.$store.state.isOver
     },
   },
 }

@@ -15,12 +15,14 @@ export default new Vuex.Store({
       total: 0,
     },
     currentView: 'start',
+    isAnswered: false,
   },
 
   mutations: {
     isOver: (state) => {
       if (state.round === 9) {
         state.isOver = true
+        state.isAnswered = false
       }
     },
 
@@ -32,9 +34,13 @@ export default new Vuex.Store({
       state.isOver = false
       state.questions = []
       state.round = 0
-      state.currentView = 'home'
+      state.isAnswered = false
+      state.currentView = 'start'
     },
 
+    setIsAnswered: (state, payload) => {
+      state.isAnswered = payload
+    },
     setScore: (state, payload) => {
       if (payload) {
         state.score.history.push({
@@ -48,7 +54,6 @@ export default new Vuex.Store({
           wrong: true,
         })
       }
-      console.log(state.score)
     },
 
     setCurrentDiff: (state, payload) => {
@@ -62,6 +67,9 @@ export default new Vuex.Store({
           accum.push({
             text: curr,
             type: false,
+            classes: {
+              incorrect: false,
+            },
           })
           return accum
         }, [])
@@ -69,10 +77,22 @@ export default new Vuex.Store({
         q.options.push({
           text: q.correct_answer,
           type: true,
+          classes: {
+            correct: false,
+          },
         })
       })
-      console.log(state.questions)
       state.currentView = 'quiz'
+    },
+
+    styleButtons: (state) => {
+      state.questions[state.round].options.forEach((opt) => {
+        if (opt.type) {
+          opt.classes = { correct: true }
+        } else {
+          opt.classes = { incorrect: true }
+        }
+      })
     },
   },
 

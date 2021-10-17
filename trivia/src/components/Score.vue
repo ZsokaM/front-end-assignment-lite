@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isOver">
     <p>Correct answers: {{ score.total }} / 10</p>
   </div>
 </template>
@@ -9,6 +9,9 @@ export default {
   computed: {
     score() {
       return this.$store.state.score
+    },
+    isOver() {
+      return this.$store.state.isOver
     },
   },
 }

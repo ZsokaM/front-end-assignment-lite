@@ -32,14 +32,15 @@ export default {
 
 <style lang="scss">
 .home {
-  margin: 1rem;
-  padding: 2rem;
+  height: 100%;
+  margin: 2rem auto;
 }
 .container {
-  background-color: darkslateblue;
-  height: 500px;
+  background-color: #ccc;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
-  box-shadow: 10px 15px 20px #ccc;
+  box-shadow: 5px 10px 15px darkslateblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,9 +50,9 @@ export default {
 h1 {
   font-size: 4rem;
   font-weight: bold;
-  color: white;
+  color: darkslateblue;
 }
 p {
-  color: white;
+  color: darkslateblue;
 }
 </style>

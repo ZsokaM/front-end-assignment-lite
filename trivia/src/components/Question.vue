@@ -1,12 +1,18 @@
 <template>
-  <article>
-    <p>{{ questions[round].question }}</p>
-    <ul>
-      <li v-for="(opt, idx) in options" :key="idx" @click="handleAnswer(opt)">
+  <article class="question">
+    <p class="question__text">{{ questions[round].question }}</p>
+    <ul class="questions__list">
+      <li
+        class="question__options"
+        v-for="(opt, idx) in options"
+        :key="idx"
+        @click="handleAnswer(opt)"
+        :class="opt.classes"
+      >
         {{ opt.text }}
       </li>
     </ul>
-    <button @click="nextQuestion">Next</button>
+    <button v-if="isAnswered" @click="nextQuestion">Next</button>
   </article>
 </template>
 
@@ -22,9 +28,14 @@ export default {
     options() {
       return this.questions[this.round].options
     },
+    isAnswered() {
+      return this.$store.state.isAnswered
+    },
   },
   methods: {
     handleAnswer(choice) {
+      this.$store.commit('setIsAnswered', true)
+      this.$store.commit('styleButtons')
       if (choice.type) {
         console.log('correct')
         this.$store.commit('setScore', true)
@@ -35,7 +46,8 @@ export default {
       this.$store.commit('isOver')
     },
     nextQuestion() {
-      if (this.round < 9) {
+      this.$store.commit('setIsAnswered', false)
+      if (this.round <= 9) {
         this.$store.commit('nextQuestion')
       }
     },
@@ -43,4 +55,41 @@ export default {
 }
 </script>
 
-<style module></style>
+<style lang="scss">
+.question {
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0px 3px 3px rosybrown;
+  height: 100%;
+
+  &__text {
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+  &__options {
+    list-style: none;
+    background-color: rosybrown;
+    text-align: center;
+    margin: 1rem auto;
+    line-height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+.correct {
+  background-color: lightgreen;
+  border: 1px solid lightgreen;
+  color: white;
+}
+
+.incorrect {
+  background-color: rgba(230, 75, 70, 0.664);
+  border: 1px solid rgba(230, 75, 70, 0.664);
+  color: white;
+}
+</style>
