@@ -2,7 +2,7 @@
   <main :class="$style.home">
     <section :class="$style.container">
       <h1 :class="$style['trivia-title']">Homerun Trivia</h1>
-      <component :is="currentView"></component>
+      <component :is="currentView" />
     </section>
   </main>
 </template>
@@ -13,9 +13,6 @@ import Quiz from '../components/Quiz.vue'
 
 export default {
   name: 'home',
-  data() {
-    return {}
-  },
   components: {
     Start,
     Quiz,
@@ -25,8 +22,6 @@ export default {
       return this.$store.state.currentView
     },
   },
-  methods: {},
-  created() {},
 }
 </script>
 
@@ -51,9 +46,6 @@ export default {
 .trivia-title {
   font-size: 4rem;
   font-weight: bold;
-  color: darkslateblue;
-}
-p {
   color: darkslateblue;
 }
 </style>

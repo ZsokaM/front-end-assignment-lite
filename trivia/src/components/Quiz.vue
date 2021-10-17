@@ -1,9 +1,9 @@
 <template>
   <div>
-    <score></score>
-    <question-meter></question-meter>
+    <score />
+    <question-meter />
     <div v-if="!isOver">
-      <question></question>
+      <question />
     </div>
     <div v-if="isOver">
       <button @click="newGame">New game</button>

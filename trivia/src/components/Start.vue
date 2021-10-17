@@ -1,6 +1,6 @@
 <template>
   <div :class="$style['start-container']">
-    <Instructions></Instructions>
+    <Instructions />
     <select
       :class="$style['start-container__dropdown']"
       @change="setCurrentDiff"
