@@ -1,6 +1,6 @@
 <template>
   <div v-if="isOver">
-    <p>Correct answers: {{ score.total }} / 10</p>
+    <p :class="$style.resultMsg">Correct answers: {{ score.total }} / 10</p>
   </div>
 </template>
 
@@ -16,3 +16,10 @@ export default {
   },
 }
 </script>
+
+<style module lang="scss">
+.resultMsg {
+  color: dodgerblue;
+  font-size: 2rem;
+}
+</style>

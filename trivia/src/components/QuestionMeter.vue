@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isOver">
-    <p>You are at question {{ round + 1 }} out of 10</p>
+    <p :class="$style['score-style']">Question {{ round + 1 }} out of 10</p>
   </div>
 </template>
 
@@ -16,3 +16,10 @@ export default {
   },
 }
 </script>
+
+<style module lang="scss">
+.score-style {
+  color: dodgerblue;
+  font-size: 1.5rem;
+}
+</style>

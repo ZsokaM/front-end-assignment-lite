@@ -1,12 +1,13 @@
 <template>
-  <div style="border: 1px solid white; padding: 1rem;">
+  <div :class="$style['start-container']">
     <Instructions></Instructions>
-    <select @change="setCurrentDiff">
+    <select
+      :class="$style['start-container__dropdown']"
+      @change="setCurrentDiff"
+    >
       <option v-for="(diff, idx) in difficulties" :key="idx">{{ diff }}</option>
     </select>
-    <br />
-    <br />
-    <button @click="startQuiz">Start Quiz</button>
+    <button @click="startQuiz">Start</button>
   </div>
 </template>
 
@@ -37,4 +38,24 @@ export default {
 }
 </script>
 
-<style module></style>
+<style module lang="scss">
+.start-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  font-size: 1.25rem;
+
+  &__dropdown {
+    max-width: 200px;
+    width: 100%;
+    margin: 2rem auto;
+    border: 1px solid darkslateblue;
+    border-radius: 25px;
+    padding: 0.75rem;
+    cursor: pointer;
+    text-align: center;
+    color: darkslateblue;
+    font-size: 1rem;
+  }
+}
+</style>
