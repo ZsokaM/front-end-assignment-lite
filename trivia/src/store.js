@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    sessionToken: '',
     difficulties: ['easy', 'medium', 'hard'],
     currentDiff: 'easy',
     questions: [],
@@ -103,7 +104,9 @@ export default new Vuex.Store({
     startQuiz(context) {
       let api =
         'https://opentdb.com/api.php?amount=10&difficulty=' +
-        context.state.currentDiff
+        context.state.currentDiff +
+        '&' +
+        context.state.sessionToken
 
       Vue.http
         .get(api)

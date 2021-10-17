@@ -88,10 +88,10 @@ export default {
     line-height: 60px;
     font-size: 1.5rem;
     width: 100%;
-  }
 
-  &__options:hover {
-    background-color: pink;
+    &:hover {
+      background-color: pink;
+    }
   }
 }
 
