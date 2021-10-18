@@ -9,6 +9,10 @@ localVue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     isAnswered: true,
+    round: 0,
+    questions: [{
+      options: null
+    }]
   },
 })
 
@@ -18,6 +22,6 @@ describe('Question.vue', () => {
       store,
       localVue,
     })
-    expect(wrapper.find('button').isVisible()).toBe('true')
+    expect(wrapper.find('button').isVisible()).toBe(true)
   })
 })
